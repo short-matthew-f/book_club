@@ -1,0 +1,16 @@
+<div class="col-md-6 book">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <%= link_to truncate(item["ItemAttributes"]["Title"], length: 80), item["DetailPageURL"] %> <br/>
+          <%= item["ItemAttributes"]["Author"] || "Author Missing" %> (<%= item["ItemAttributes"]["PublicationDate"] || "Date Missing" %>) <br/>
+          ASIN: <%= item["ASIN"] %>
+        </div>
+        <div class="col-md-4">
+          <%= image_tag item["MediumImage"]["URL"] %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
