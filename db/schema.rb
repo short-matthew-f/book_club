@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119123504) do
+ActiveRecord::Schema.define(version: 20141127232516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,16 @@ ActiveRecord::Schema.define(version: 20141119123504) do
   add_index "books", ["asin"], name: "index_books_on_asin", unique: true, using: :btree
   add_index "books", ["author"], name: "index_books_on_author", using: :btree
   add_index "books", ["title"], name: "index_books_on_title", using: :btree
+
+  create_table "clubs", force: true do |t|
+    t.integer  "owner_id",    null: false
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "clubs", ["owner_id"], name: "index_clubs_on_owner_id", using: :btree
 
   create_table "friendships", force: true do |t|
     t.integer  "user_id",    null: false
@@ -48,19 +58,19 @@ ActiveRecord::Schema.define(version: 20141119123504) do
   end
 
   create_table "recommendations", force: true do |t|
-    t.integer  "user_id",      null: false
-    t.integer  "recipient_id", null: false
-    t.integer  "book_id",      null: false
-    t.text     "description",  null: false
-    t.text     "inscription",  null: false
+    t.integer  "recommender_id", null: false
+    t.integer  "club_id",        null: false
+    t.integer  "book_id",        null: false
+    t.text     "description",    null: false
+    t.text     "inscription",    null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "recommendations", ["book_id"], name: "index_recommendations_on_book_id", using: :btree
-  add_index "recommendations", ["recipient_id"], name: "index_recommendations_on_recipient_id", using: :btree
-  add_index "recommendations", ["user_id", "recipient_id", "book_id"], name: "index_recommendations_on_user_id_and_recipient_id_and_book_id", unique: true, using: :btree
-  add_index "recommendations", ["user_id"], name: "index_recommendations_on_user_id", using: :btree
+  add_index "recommendations", ["club_id"], name: "index_recommendations_on_club_id", using: :btree
+  add_index "recommendations", ["recommender_id", "club_id", "book_id"], name: "index_recommendations_on_recommender_id_and_club_id_and_book_id", unique: true, using: :btree
+  add_index "recommendations", ["recommender_id"], name: "index_recommendations_on_recommender_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,5 @@
+<h2 class="text-right">
+  <%= @user.email %>
+</h2>
+
+<%= render partial: 'profile', locals: { profile: @user.profile } if @user.profile %>

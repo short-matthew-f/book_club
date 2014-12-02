@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  resources :friends
-
-  resources :profiles
-
-  resources :recommendations
-
-  resources :books
-
   devise_for :users
+  
+  resources :books, shallow: true do 
+    resources :recommendations
+  end
+
+  resources :users, shallow: true do 
+    resource :profile, only: [:show]
+    resource :club
+    
+    resources :friends
+  end
+  
+  resource :profile, only: [:new, :create, :edit, :update, :destroy]
   
   root to: "static#query"
   

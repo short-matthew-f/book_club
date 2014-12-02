@@ -1,0 +1,21 @@
+<% if profile.name %>
+  <h3>
+    <%= profile.name %>
+  </h3>
+<% end %>
+
+<% if profile.location %>
+  <h3>
+    <%= profile.location %>
+  </h3>
+<% end %>
+
+<% if profile.bio %>
+  <h3>
+    About me:
+  </h3>
+  
+  <p class="lead">
+    <%= profile.bio %>
+  </p>
+<% end %>

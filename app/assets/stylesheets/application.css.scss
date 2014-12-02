@@ -14,16 +14,72 @@
  *= require_self
  */
 
+// fonts
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700);
+$font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif;
+$font-family-serif: "Gentium Book Basic", Georgia, Times, Serif;
+
+// primary colors
+
+$sage: #9C9F84;
+$cream: #F7DCB4;
+
+// body colors
+$body-bg: lighten($sage, 20%);
+
+// navbar colors
+$navbar-default-bg: $sage;
+$navbar-default-link-color: $cream;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$search-result-bg: #8888ff;
+body { 
+  // fixed top/bottom navbars
+  padding-top: 90px; 
+  padding-bottom: 70px;
+}
 
-.well {
-  background: lighten($search-result-bg, 20%);
+.header > nav {
+  border-bottom: 1px solid darken($navbar-default-bg, 20%);
+  
+  .navbar-brand {
+    font-family: $font-family-serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 2.5em;
+    
+    &:hover { color: darken($cream, 10%); }
+  }
+  
+  .navbar-main {
+    li+li { border-left: 1px solid lighten($navbar-default-bg, 15%); }
+  }
+  
+  hr { 
+    margin: 0px;
+    border-top: 1px solid darken($navbar-default-bg, 20%);
+  }
+  
+  .navbar-context {
+    background: lighten($navbar-default-bg, 7%);
+    li {
+      + li { border-left: 1px solid lighten($navbar-default-bg, 10%); }
+      > a {
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 0.8em;
+      }
+    }
+  }
 }
 
 .book {
+  background: $cream;
+  border: darken($sage, 20%);
+  
   img {
     height: 100px;
     width: 70px;
@@ -32,16 +88,18 @@ $search-result-bg: #8888ff;
   }
   
   a {
-    color: darkred;
+    color: darken($sage, 30%);
     
     &:hover {
       color: black;
     }
   }
   
-  .panel {
-    background: $search-result-bg;
-    &:hover { background: lighten($search-result-bg, 10%); }
-    &:active { background: lighten($search-result-bg, 20%); }
-  }
+  &:hover {
+    background: lighten($cream, 3%);
+  };
+  
+  &:active {
+    background: darken($cream, 3%);
+  };
 }

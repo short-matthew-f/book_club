@@ -11,7 +11,7 @@ class StaticController < ApplicationController
       response_group: 'Large'
     })
     
-    @items = @res.items.take(5).map do |item|
+    @items = @res.items.take(6).map do |item|
       Hash.from_xml(item.elem.to_xml)["Item"]
     end
   end
