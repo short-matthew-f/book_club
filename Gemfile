@@ -18,6 +18,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'amazon-ecs'
+gem 'httparty'
 
 group :development do
   gem 'better_errors'

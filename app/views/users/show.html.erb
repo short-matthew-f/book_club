@@ -2,4 +2,6 @@
   <%= @user.email %>
 </h2>
 
-<%= render partial: 'profile', locals: { profile: @user.profile } if @user.profile %>
+<% profile = @user.profile || Profile.new(user: @user) %>
+<hr>
+<%= render partial: 'profile', locals: { profile: @user.profile } %>

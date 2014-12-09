@@ -1,16 +1,14 @@
 <div class="header">
   <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid navbar-main">
-      <a class="navbar-brand" href="#">My Friends' Book Club</a>
+      <a class="navbar-brand" href="/">My Friends' Book Club</a>
       <ul class="nav navbar-nav navbar-right">
         <li>
           <%= link_to "Users", users_url %>
         </li>
       </ul>
     </div>
-    <hr>
-    <div class="container-fluid navbar-context">
-      <%= render partial: 'navbar_context' %>
+    <%= render partial: 'navbar_context' %>
     </div>
   </nav>
 </div>

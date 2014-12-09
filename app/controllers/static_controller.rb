@@ -4,15 +4,19 @@ class StaticController < ApplicationController
   end
   
   def search
-    @res = Amazon::Ecs.item_search(nil, {
-      title: params[:title],
-      author: params[:author],
-      search_index: 'Books',
-      response_group: 'Large'
-    })
+    @url = "https://www.goodreads.com/search/index.xml?key=#{ENV['good_reads_key']}&q=#{URI.escape params[:title]}+#{URI.escape params[:author]}"
+    @response = HTTParty.get(@url) 
     
-    @items = @res.items.take(6).map do |item|
-      Hash.from_xml(item.elem.to_xml)["Item"]
+    @items = @response["GoodreadsResponse"]["search"]["results"]["work"].map do |item|
+      book = item["best_book"]
+      
+      {
+        title: book["title"],
+        author: book["author"]["name"],
+        publication_year: item["original_publication_year"],
+        image_url: book["image_url"],
+        small_image_url: book["small_image_url"]
+      }
     end
   end
   

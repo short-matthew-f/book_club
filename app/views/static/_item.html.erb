@@ -3,12 +3,11 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-md-8">
-          <%= link_to truncate(item["ItemAttributes"]["Title"], length: 80), item["DetailPageURL"] %> <br/>
-          <%= item["ItemAttributes"]["Author"] || "Author Missing" %> (<%= item["ItemAttributes"]["PublicationDate"] || "Date Missing" %>) <br/>
-          ASIN: <%= item["ASIN"] %>
+          <%= truncate(item[:title], length: 80) %> (<%= item[:publication_year] %>)<br/>
+          By: <%= item[:author] || "Author Missing" %> 
         </div>
         <div class="col-md-4">
-          <%= image_tag item["MediumImage"]["URL"] %>
+          <%= image_tag item[:image_url] %>
         </div>
       </div>
     </div>

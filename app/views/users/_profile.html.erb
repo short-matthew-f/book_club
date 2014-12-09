@@ -1,21 +1,38 @@
-<% if profile.name %>
-  <h3>
-    <%= profile.name %>
-  </h3>
-<% end %>
-
-<% if profile.location %>
-  <h3>
-    <%= profile.location %>
-  </h3>
-<% end %>
-
-<% if profile.bio %>
-  <h3>
-    About me:
-  </h3>
-  
-  <p class="lead">
-    <%= profile.bio %>
-  </p>
-<% end %>
+<div class="row">  
+  <div class="col-md-3">
+    <div class="profile">
+      <div class="profile-header">
+        <h3>
+          Profile
+          <% if profile.user == current_user %>
+            <span class="pull-right">
+              <% if profile.persisted? %>
+                <%= link_to "Edit", edit_profile_url(profile) %>
+              <% else %>
+                <%= link_to "Create", new_profile_url(current_user) %>
+              <% end %>
+            </span>
+          <% end %>
+        </h3>
+      </div>
+      <div class="profile-element">
+        <h4>
+          Name
+        </h4>
+        <%= profile.name && !profile.name.empty? ? profile.name : "<code>[redacted]</code>".html_safe %>
+      </div>
+      <div class="profile-element">
+        <h4>
+          Location
+        </h4>
+        <%= profile.location && !profile.location.empty? ? profile.location : "<code>[redacted]</code>".html_safe %>
+      </div>
+      <div class="profile-element last-element">
+        <h4>
+          Biography
+        </h4>
+        <%= profile.bio && !profile.bio.empty?  ? profile.bio : "<code>[redacted]</code>".html_safe %>
+      </div>
+    </div>
+  </div>
+</div>
