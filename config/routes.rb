@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:show]
     resource :club
     
-    resources :friends
+    resources :friendships
   end
   
   resource :profile, only: [:new, :create, :edit, :update, :destroy]
@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   
   get 'static/query'
   post 'static/search', as: :book_search
+  
+  post 'users/find', to: "users#find", as: :find_user
 end

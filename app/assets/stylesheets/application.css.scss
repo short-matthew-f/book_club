@@ -38,7 +38,7 @@ $navbar-default-link-color: $cream;
 
 // offsets for fixed top/bottom navbars
 body { 
-  padding-top: 90px; 
+  padding-top: 110px; 
   padding-bottom: 70px;
 }
 
@@ -65,14 +65,18 @@ body {
   }
   
   .navbar-context {
-    background: lighten($navbar-default-bg, 7%);
-    li {
-      + li { border-left: 1px solid lighten($navbar-default-bg, 10%); }
-      > a {
-        padding-top: 3px;
-        padding-bottom: 3px;
-        font-size: 0.8em;
+    form { 
+      padding-left: 0; 
+      
+      .search-bar {
+        min-width: 300px;
       }
+    }
+    
+    background: lighten($navbar-default-bg, 7%);
+    
+    li { 
+      + li { border-left: 1px solid lighten($navbar-default-bg, 10%); }
     }
   }
 }
