@@ -1,15 +1,29 @@
+<% user = profile.user %>
+
 <div class="row">  
-  <div class="col-md-3">
+  <div class="col-md-4">
     <div class="profile">
       <div class="profile-header">
         <h3>
-          Profile
-          <% if profile.user == current_user %>
+          <%= user.email %>
+          <% if user == current_user %>
             <span class="pull-right">
               <% if profile.persisted? %>
                 <%= link_to "Edit", edit_profile_url(profile) %>
               <% else %>
                 <%= link_to "Create", new_profile_url(current_user) %>
+              <% end %>
+            </span>
+          <% else %>
+            <span class="pull-right">
+              <% if user.friends.include? current_user %>
+                <%= link_to friendship_url(user.friendships.find_by(friend: current_user)), method: :delete do %>
+                  <span class="glyphicon glyphicon-star"></span>
+                <% end %>
+              <% else %>
+                <%= link_to user_friendships_url(user), method: :post do %>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                <% end %>
               <% end %>
             </span>
           <% end %>

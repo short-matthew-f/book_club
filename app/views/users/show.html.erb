@@ -1,18 +1,3 @@
-<h2 class="text-right">
-  <% unless @user == current_user %>
-    <% if @user.friends.include? current_user %>
-      <%= button_to friendship_url(@user.friendships.find_by(friend: current_user)), method: :delete do %>
-        <span class="glyphicon glyphicon-star"></span>
-      <% end %>
-    <% else %>
-      <%= button_to user_friendships_url(@user) do %>
-        <span class="glyphicon glyphicon-star-empty"></span>
-      <% end %>
-    <% end %>
-  <% end %>
-  <%= @user.email %>
-</h2>
-
 <% profile = @user.profile || Profile.new(user: @user) %>
-<hr>
+
 <%= render partial: 'profile', locals: { profile: @user.profile } %>
