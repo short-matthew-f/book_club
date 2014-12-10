@@ -15,14 +15,12 @@
  */
 
 // fonts
-
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 @import url(http://fonts.googleapis.com/css?family=Gentium+Book+Basic:400,400italic,700);
-$font-family-sans-serif: "Lato", Helvetica, Arial, sans-serif;
-$font-family-serif: "Gentium Book Basic", Georgia, Times, Serif;
+$sans-serif: "Lato", Helvetica, Arial, sans-serif;
+$serif: "Gentium Book Basic", Georgia, Times, Serif;
 
 // primary colors
-
 $sage: #9C9F84;
 $cream: #F7DCB4;
 
@@ -33,144 +31,83 @@ $body-bg: lighten($sage, 20%);
 $navbar-default-bg: $sage;
 $navbar-default-link-color: $cream;
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "bourbon";
+@import "neat";
 
-// offsets for fixed top/bottom navbars
-body { 
-  padding-top: 120px; 
-  padding-bottom: 70px;
+// resets
+
+body, div, ul, li, p, h1, h2, h3, h4, h5, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  
+  font: inherit;
+  color: inherit;
+  background: inherit;
 }
 
-// navigation styling
-.header > nav {
-  border-bottom: 1px solid darken($navbar-default-bg, 20%);
-  
-  .navbar-brand {
-    font-family: $font-family-serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 2.5em;
+body {
+  font-family: $sans-serif;
+  font-size: 16px;
+  background: lighten($sage, 20%);
+}
+
+a {
+  text-decoration: none;
+}
+
+// utility
+
+.clearfix:after {
+  clear: both;
+  display: block;
+  content: '';
+}
+
+// offsets for fixed top/bottom navbars
+
+.navs { list-style: none; }
+.right { float: right; }
+.left { float: left; }
+
+header.navigation {
+  nav.primary {
+    background: $sage;
+    border-bottom: 1px solid $cream;
     
-    &:hover { color: darken($cream, 10%); }
-  }
-  
-  .navbar-main {
-    li {
-      .active_page { background: lighten($navbar-default-bg, 7%); }
-      + li { border-left: 1px solid lighten($navbar-default-bg, 15%); }
-    }
-  }
-  
-  hr { 
-    margin: 0px;
-    border-top: 1px solid darken($navbar-default-bg, 20%);
-  }
-  
-  .navbar-context {
-    form { 
-      padding-left: 0; 
-      
-      .search-bar {
-        min-width: 300px;
+    .brand {
+      float: left;
+      a {
+        display: inline-block;
+        font-size: 24px;
+        padding: 12px 16px;
       }
     }
     
-    background: lighten($navbar-default-bg, 7%);
-    
-    li {
-      .active_page { background: $navbar-default-bg; } 
-      + li { border-left: 1px solid lighten($navbar-default-bg, 10%); }
+    .navs {
+      li {
+        float: left;
+        + li { border-left: 1px dashed $cream; }
+        a {
+          display: inline-block;
+          padding: 16px;
+        }
+      }
     }
   }
-}
-
-// profiles
-
-.profile {
-  border: 1px solid white;
-  border-radius: 4px;
-  
-  background: $sage;
-  
-  .glyphicon-star {
-    color: gold;
-    &:hover { color: maroon; };
-  }
-  
-  .glyphicon-star-empty {
-    color: maroon;
-    &:hover { color: gold; };
-  }
-  
-  .profile-header {
-    color: $cream;
-    padding: 8px;
-    
-    h3 {
-      margin: 0;
-    }
-  }
-  
-  .profile-element {
-    padding: 8px;
+  nav.contextual {
     background: lighten($sage, 10%);
+    border-bottom: 2px solid $cream;
     
-    h4 {
-      margin-top: 0;
-      margin-bottom: 4px;
-      border-bottom: 1px solid $cream;
+    .navs {
+      li {
+        float: left;
+        + li { border-left: 1px dashed $cream; }
+        a {
+          display: inline-block;
+          padding: 8px 16px;
+        }
+      }
     }
-    
-    code {
-      background: inherit;
-      color: inherit;
-      margin: 0;
-      padding: 0;
-      border: 0;
-    }
-    
-    &.last-element {
-      padding-bottom: 16px;
-      border-radius: 0 0 4px 4px;
-    }
-  }
-  
-  a {
-    color: darken($sage, 30%);
-  
-    &:hover {
-      color: black;
-    }
-  }
-}
-
-//
-
-.book {
-  background: $cream;
-  border: darken($sage, 20%);
-  
-  img {
-    height: 100px;
-    width: 70px;
-    
-    float: right;
-  }
-  
-  a {
-    color: darken($sage, 30%);
-    
-    &:hover {
-      color: black;
-    }
-  }
-  
-  &:hover {
-    background: lighten($cream, 3%);
-  };
-  
-  &:active {
-    background: darken($cream, 3%);
-  };
+  } 
 }

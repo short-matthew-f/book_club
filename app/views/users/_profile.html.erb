@@ -9,9 +9,9 @@
           <% if user == current_user %>
             <span class="pull-right">
               <% if profile.persisted? %>
-                <%= link_to "Edit", edit_profile_url(profile) %>
+                <%= link_to "Edit", edit_profile_url %>
               <% else %>
-                <%= link_to "Create", new_profile_url(current_user) %>
+                <%= link_to "Create", new_profile_url %>
               <% end %>
             </span>
           <% else %>
