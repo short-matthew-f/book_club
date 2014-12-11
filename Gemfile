@@ -27,6 +27,9 @@ group :development do
   gem 'spring'
 end
 
-gem 'figaro'
+group :production do
+  gem 'rails_12factor'
+end
 
+gem 'figaro'
 gem 'devise'
