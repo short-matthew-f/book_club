@@ -2,19 +2,15 @@ class FriendshipsController < ApplicationController
   def index
     @friends = current_user.friends
   end
-  
-  def create
+
+  def toggle_friendship
     @user = User.find(params[:user_id])
-    @user.befriend(current_user)
-    
-    redirect_to @user
-  end
-  
-  def destroy
-    @friendship = Friendship.find(params[:id])
-    @user = @friendship.user
-    @user.defriend(current_user)
-    
-    redirect_to @user
+    if @user.friends.include? current_user
+      @user.defriend(current_user)
+      render json: { friend: false }
+    else
+      @user.befriend(current_user)
+      render json: { friend: true }
+    end
   end
 end

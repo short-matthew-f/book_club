@@ -17,19 +17,7 @@
       </li>
     </ul>
   </nav>
-  <nav class="contextual clearfix">
-    <div class="search left">
-      <%= form_tag find_user_url, method: :post do %>
-        <%= text_field_tag "user_email", nil, type: :text, placeholder: "Find a user by email address", name: "user[email]" %>
-        <%= button_tag "Search" %>
-      <% end %>
-    </div>
-    <ul class="navs right">
-      <li>
-        <%= link_to "Users", current_user %>
-      </li>
-    </ul>
-  </nav>
+  <%= render partial: "navbar_context" %>
 </header>
 
 <% if notice %>

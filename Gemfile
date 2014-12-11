@@ -5,6 +5,7 @@ gem 'pg'
 
 gem 'sass-rails', '~> 4.0.3'
 gem 'neat'
+gem "font-awesome-rails"
 
 gem 'autoprefixer-rails'
 

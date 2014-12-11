@@ -19,5 +19,7 @@ Rails.application.routes.draw do
   get 'static/query'
   post 'static/search', as: :book_search
   
+  post 'users/:user_id/toggle_friendship', to: "friendships#toggle_friendship", as: :toggle_friendship
+  
   post 'users/find', to: "users#find", as: :find_user
 end

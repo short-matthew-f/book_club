@@ -1,19 +1,18 @@
-<hr>
-<div class="container-fluid navbar-context">
-  <ul class="nav navbar-nav navbar-right">
+<nav class="contextual clearfix">
+  <div class="search left">
+    <%= form_tag find_user_url, method: :post do %>
+      <%= text_field_tag "user_email", nil, type: :text, placeholder: "Find a user by email address", name: "user[email]" %>
+      <%= button_tag do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <ul class="navs right">
     <li>
-      <%= link_to "Your Page", user_url(current_user), class: active_page(user_url current_user) %>
+      <%= link_to "Your Page", user_url(current_user) %>
     </li>
     <li>
-      <%= link_to "Your Friends", user_friendships_url(current_user), class: active_page(user_friendships_url(current_user)) %>
+      <%= link_to "Your Friends", user_friendships_url(current_user) %>
+    </li>
   </ul>
-  
-  <%= form_tag find_user_url, method: :post, class: "navbar-form navbar-left", role: "search" do %>
-    <div class="form-group">
-      <%= text_field_tag "user_email", nil, type: :text, class: 'search-bar form-control', placeholder: "Find a user by email address", name: "user[email]" %>
-    </div>
-    <%= button_tag class: "btn btn-default" do %>
-      <span class="glyphicon glyphicon-search"></span>
-    <% end %>
-  <% end %>
-</div>
+</nav>

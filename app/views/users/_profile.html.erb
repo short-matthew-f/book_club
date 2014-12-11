@@ -1,52 +1,40 @@
 <% user = profile.user %>
 
-<div class="row">  
-  <div class="col-md-4">
-    <div class="profile">
-      <div class="profile-header">
-        <h3>
-          <%= user.email %>
-          <% if user == current_user %>
-            <span class="pull-right">
-              <% if profile.persisted? %>
-                <%= link_to "Edit", edit_profile_url %>
-              <% else %>
-                <%= link_to "Create", new_profile_url %>
-              <% end %>
-            </span>
-          <% else %>
-            <span class="pull-right">
-              <% if user.friends.include? current_user %>
-                <%= link_to friendship_url(user.friendships.find_by(friend: current_user)), method: :delete do %>
-                  <span class="glyphicon glyphicon-star"></span>
-                <% end %>
-              <% else %>
-                <%= link_to user_friendships_url(user), method: :post do %>
-                  <span class="glyphicon glyphicon-star-empty"></span>
-                <% end %>
-              <% end %>
-            </span>
-          <% end %>
-        </h3>
-      </div>
-      <div class="profile-element">
-        <h4>
-          Name
-        </h4>
-        <%= profile.name && !profile.name.empty? ? profile.name : "<code>[redacted]</code>".html_safe %>
-      </div>
-      <div class="profile-element">
-        <h4>
-          Location
-        </h4>
-        <%= profile.location && !profile.location.empty? ? profile.location : "<code>[redacted]</code>".html_safe %>
-      </div>
-      <div class="profile-element last-element">
-        <h4>
-          Biography
-        </h4>
-        <%= profile.bio && !profile.bio.empty?  ? profile.bio : "<code>[redacted]</code>".html_safe %>
-      </div>
-    </div>
+<section class="profile">
+  <h5>
+    <%= user.email %>
+    <% if user == current_user %>
+      <span class="right">
+        <% if profile.persisted? %>
+          <%= link_to "Edit", edit_profile_url %>
+        <% else %>
+          <%= link_to "Create", new_profile_url %>
+        <% end %>
+      </span>
+    <% else %>
+      <% star_class = (user.friends.include?(current_user) ? "friend" : "") %>
+      <span class="right">
+        <i class="fa fa-star <%= star_class %>" data-id="<%= user.id %>"></i>
+      </span>
+    <% end %>
+  </h5>
+  <div class="profile-element">
+    <h4>
+      Name
+    </h4>
+    <%= profile.name && !profile.name.empty? ? profile.name : "<code>[redacted]</code>".html_safe %>
   </div>
-</div>
+  <div class="profile-element">
+    <h4>
+      Location
+    </h4>
+    <%= profile.location && !profile.location.empty? ? profile.location : "<code>[redacted]</code>".html_safe %>
+  </div>
+  <div class="profile-element last-element">
+    <h4>
+      Biography
+    </h4>
+    <%= profile.bio && !profile.bio.empty?  ? profile.bio : "<code>[redacted]</code>".html_safe %>
+  </div>
+</section>
+

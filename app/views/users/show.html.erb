@@ -1,3 +1,15 @@
 <% profile = @user.profile || Profile.new(user: @user) %>
 
 <%= render partial: 'profile', locals: { profile: @user.profile } %>
+
+<script>
+$('i.fa-star').on('click', function (e) {
+  var $star = $(this);
+  var userId = $star.data('id');
+  var url = "/users/" + userId + "/toggle_friendship";
+  
+  $.post(url, function(data) {}).done(function(data) { 
+    $star.toggleClass('friend');
+  });
+});
+</script>
