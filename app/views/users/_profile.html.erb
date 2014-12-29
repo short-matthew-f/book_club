@@ -11,6 +11,9 @@
       </span>
     <% end %>
   </h5>
+  
+  <% profile ||= Profile.new(user: user) %>
+  
   <div class="profile-element">
     <h4>
       Name
@@ -33,6 +36,7 @@
     </h4>
     <p>
       <%= profile_display profile.bio %>
+    </p>
   </div>
 </section>
 
