@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @profile = @user.profile
+    
+    if @user == current_user && @profile
+      render @user
+    else
+      redirect_to new_profile_url
+    end
   end
   
   def friends

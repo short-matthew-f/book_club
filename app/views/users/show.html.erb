@@ -1,15 +1,13 @@
-<% profile = @user.profile || Profile.new(user: @user) %>
-
-<%= render partial: 'profile', locals: { profile: profile } %>
+<%= render partial: 'profile', locals: { profile: @profile, user: @user } %>
 
 <script>
-$('i.fa-star').on('click', function (e) {
-  var $star = $(this);
-  var userId = $star.data('id');
-  var url = "/users/" + userId + "/toggle_friendship";
+  $('i.fa-star').on('click', function (e) {
+    var $star = $(this);
+    var userId = $star.data('id');
+    var url = "/users/" + userId + "/toggle_friendship";
   
-  $.post(url, function(data) {}).done(function(data) { 
-    $star.toggleClass('friend');
+    $.post(url, function(data) {}).done(function(data) { 
+      $star.toggleClass('friend');
+    });
   });
-});
 </script>
