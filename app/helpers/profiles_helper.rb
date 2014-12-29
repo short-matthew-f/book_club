@@ -1,6 +1,6 @@
 module ProfilesHelper
   def profile_display(value)
-    if value.empty? || value.nil?
+    if value.nil? || value.empty?
       "<code>[redacted]</code>".html_safe
     else
       value
