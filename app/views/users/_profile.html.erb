@@ -9,7 +9,7 @@
           <%= link_to "Edit", edit_profile_url %>
         <% else %>
           <%= link_to "Create", new_profile_url %>
-        <% end %>
+        <% end %> 
       </span>
     <% else %>
       <% star_class = (user.friends.include?(current_user) ? "friend" : "") %>
@@ -22,19 +22,24 @@
     <h4>
       Name
     </h4>
-    <%= profile.name && !profile.name.empty? ? profile.name : "<code>[redacted]</code>".html_safe %>
+    <p>
+       <%= profile_display profile.name %>
+    </p>
   </div>
   <div class="profile-element">
     <h4>
       Location
     </h4>
-    <%= profile.location && !profile.location.empty? ? profile.location : "<code>[redacted]</code>".html_safe %>
+    <p>
+      <%= profile_display profile.location %>
+    </p>
   </div>
   <div class="profile-element last-element">
     <h4>
       Biography
     </h4>
-    <%= profile.bio && !profile.bio.empty?  ? profile.bio : "<code>[redacted]</code>".html_safe %>
+    <p>
+      <%= profile_display profile.bio %>
   </div>
 </section>
 

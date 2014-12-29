@@ -1,28 +1,31 @@
-<div class="container-fluid">
-  <h2>Log in</h2>
+<section class="authentication">
+  <h1>
+    Sign into your account
+  </h1>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
+    <fieldset class="form-group">
+      <%= f.label :email %>
       <%= f.email_field :email, autofocus: true %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %><br />
+    </fieldset>
+    <fieldset class="form-group">
+      <%= f.label :password %>
       <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+    </fieldset>
+    
+    <div class="clearfix">
+      <% if devise_mapping.rememberable? -%>
+        <fieldset class="form-group right">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me do %>
+            <i class="fa fa-check"></i> Remember Me
+          <% end %>
+        </fieldset>
+      <% end -%>
 
-    <% if devise_mapping.rememberable? -%>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :remember_me %>
+      <div class="actions left">
+        <%= f.submit "Sign in" %>
       </div>
-    <% end -%>
-
-    <div class="actions">
-      <%= f.submit "Log in" %>
     </div>
   <% end %>
-
-  <%= render "devise/shared/links" %>
-</div>
+</section>

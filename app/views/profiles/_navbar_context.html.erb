@@ -1,0 +1,18 @@
+<nav class="contextual clearfix">
+  <div class="search left">
+    <%= form_tag find_user_url, method: :post do %>
+      <%= text_field_tag "user_email", nil, type: :text, placeholder: "Find a user by email address", name: "user[email]" %>
+      <%= button_tag do %>
+        <i class="fa fa-search"></i>
+      <% end %>
+    <% end %>
+  </div>
+  <ul class="navs right">
+    <li>
+      <%= link_to "Your Page", user_url(current_user) %>
+    </li>
+    <li>
+      <%= link_to "Your Friends", user_friendships_url(current_user) %>
+    </li>
+  </ul>
+</nav>

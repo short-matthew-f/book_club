@@ -3,7 +3,7 @@ class FriendshipsController < ApplicationController
     @friends = current_user.friends
   end
 
-  def toggle_friendship
+  def toggle_friendship 
     @user = User.find(params[:user_id])
     if @user.friends.include? current_user
       @user.defriend(current_user)

@@ -4,8 +4,7 @@
 
 <script>
 $('i.fa-star').on('click', function (e) {
-  var $star = $(this);
-  var userId = $star.data('id');
+  var userId = $(this).data('id');
   var url = "/users/" + userId + "/toggle_friendship";
   
   $.post(url, function(data) {}).done(function(data) { 

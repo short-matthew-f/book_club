@@ -1,40 +1,17 @@
-<div class="row">  
-  <div class="col-md-4">
-    <div class="profile">
-      <%= form_for profile, url: profile_path do |p| %>
-        <div class="profile-header">
-          <h3>
-            <%= user.email %>
-            <span class="pull-right">
-              <%= p.submit "Update Biography", class: "btn btn-default" %>
-            </span>
-          </h3>
-        </div>
-        <div class="profile-element">
-          <h4>
-            Name
-          </h4>
-          <div class="form-group">
-            <%= p.text_field :name, class: "form-control" %>
-          </div>
-        </div>
-        <div class="profile-element">
-          <h4>
-            Location
-          </h4>
-          <div class="form-group">
-            <%= p.text_field :location, class: "form-control" %>
-          </div>
-        </div>
-        <div class="profile-element last-element">
-          <h4>
-            Biography
-          </h4>
-          <div class="form-group">
-            <%= p.text_area :bio, class: "form-control" %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<section class="profile">
+  <%= form_for profile, url: profile_path do |p| %>
+    <fieldset class="form-group">
+      <%= p.label :name, "Name" %>
+      <%= p.text_field :name, placeholder: "Jane Doe" %>
+    </fieldset>
+    <fieldset class="form-group">
+      <%= p.label :location, "Location" %>
+      <%= p.text_field :location, placeholder: "e.g. A. A. Milne" %>
+    </fieldset>
+    <fieldset class="form-group">
+      <%= p.label :bio, "Biography" %>
+      <%= p.text_field :bio, placeholder: "e.g. A. A. Milne" %>
+    </fieldset>
+    <%= submit_tag "Search" %>
+  <% end %>
+</section>

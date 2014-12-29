@@ -5,9 +5,9 @@
       <%= text_field_tag :title, nil, placeholder: "e.g. Winnie-the-Pooh" %>
     </fieldset>
     <fieldset class="form-group">
-      <%= label_tag :author, "Book title" %>
+      <%= label_tag :author, "Book author" %>
       <%= text_field_tag :author, nil, placeholder: "e.g. A. A. Milne" %>
     </fieldset>
-    <%= submit_tag :search, { class: "btn btn-large btn-default"} %>
+    <%= submit_tag "Search" %>
   <% end %>
 </section>

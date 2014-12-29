@@ -37,7 +37,10 @@ $navbar-default-link-color: $cream;
 
 // resets
 
-body, div, p, main, ul, li, p, h1, h2, h3, h4, h5, a, i, form, input, fieldset, button {
+body, div, main, 
+ul, li, 
+p, h1, h2, h3, h4, h5, a, i, 
+form, input, fieldset, button, select, textarea {
   margin: 0;
   border: 0;
   padding: 0;
@@ -49,6 +52,10 @@ body, div, p, main, ul, li, p, h1, h2, h3, h4, h5, a, i, form, input, fieldset, 
 
 a { text-decoration: none; }
 
+input, textarea, select, button { 
+  @include box-sizing(border-box); 
+}
+
 // container
 body { 
   @include outer-container; 
@@ -59,7 +66,7 @@ body {
 
 main { padding: 0 16px; }
 
-a, input, button {
+a, input, button, input[type='checkbox']+label {
   outline: none;
   &:hover, &:focus { 
     box-shadow: inset 0 0 4px white, 0 0 1px black; 
@@ -79,24 +86,69 @@ a, input, button {
   content: '';
 }
 
+// lists
+
 ul { list-style: none; }
 .right { float: right; }
 .left { float: left; }
 
-//form {
-//  fieldset {
-//    label {
-//      @include span-columns(6);
-//      border-right: 1px solid blue;
-//    }
-//    input {
-//      @include span-columns(6);
-//      border-right: 1px solid blue;
-//    }
-//  }
-//}
+// forms
 
-.navigation {
+form {
+  fieldset {
+    label {
+      display: block;
+      font-size: 1.3em;
+      border-bottom: 1px solid $cream;
+      margin-bottom: 8px;
+    }
+    input, textarea {
+      display: block;
+      width: 100%;
+      line-height: 1em;
+      background: rgba(white, 0.5);
+      padding: 8px 16px;
+      margin-bottom: 16px;
+      @include transition(all 0.2s ease-in-out);
+      &:active, &:focus { 
+        @include transition(all 0.3s ease-in-out);
+        background: rgba(white, 0.9); 
+      }
+    }
+  }
+  button, input[type='submit'], input[type='checkbox']+label {
+    background: mix($sage, $cream, 80%);
+    padding: 8px 16px;
+    margin: 8px 0px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type='checkbox'] {
+    display: none;
+    + label {
+      font-size: 1em;
+      display: inline-block;
+      border: 0;
+      margin-bottom: 16px;
+      &:hover, &:focus { background: mix($cream, $sage, 40%); }
+      i { display: none; }
+    }
+    &:checked {
+      + label {
+        background: $cream;
+        &:hover, &:focus { background: mix($sage, $cream, 20%); }
+        i {
+          display: inline;
+          margin-right: 8px;
+          color: $sage;
+          text-shadow: 0px 2px white;
+        }
+      }
+    }
+  }
+}
+
+header.navigation {
   margin-bottom: 16px;
   nav.primary {
     background: $sage;
@@ -125,9 +177,8 @@ ul { list-style: none; }
   nav.contextual {
     background: lighten($sage, 10%);
     border-bottom: 1px solid $cream;
-    
     .search {
-      padding: 8px 16px;
+      padding: 0 16px;
       input {
         width: 300px;
         height: 27px;
@@ -155,19 +206,55 @@ ul { list-style: none; }
   } 
 }
 
-.profile {
-  @include span-columns(4);
+section.authentication {
+  @include span-columns(6);
+  @include shift(3);
+  
+  margin-top: 36px;
+  
+  h1 {
+    font-size: 1.8em;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  
+  input[type='checkbox']+label {
+  }
+  
+  input[type='submit'] {
+  }
+}
 
+section.information {
+  padding: 8px 16px;
+  margin: 0 0 16px 0;
+  font-size: 1.1em;
+  border: 1px solid $cream;
+  background: lightyellow;
+  color: darken($sage, 30%);
+}
+
+section.profile {
+  @include span-columns(4);
+  
+  h4 { font-size: 18px; }
   h5 {
     font-size: 22px;
     padding-bottom: 2px;
     margin-bottom: 2px;
     border-bottom: 1px solid white;
-    
     i {
-      color: gold;
-      
-      &.friend { color: blue; }
+      cursor: pointer;
+      color: grey;
+      &:hover { color: desaturate(gold, 50%); } 
+      &.friend { 
+        color: gold;
+        &:hover { color: desaturate(gold, 20%); } 
+      }
     }
+  }
+  p {
+    margin-bottom: 6px;
+    margin-left: 12px;
   }
 }
