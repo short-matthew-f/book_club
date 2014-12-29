@@ -1,6 +1,6 @@
 <% profile = @user.profile || Profile.new(user: @user) %>
 
-<%= render partial: 'profile', locals: { profile: @user.profile } %>
+<%= render partial: 'profile', locals: { profile: profile } %>
 
 <script>
 $('i.fa-star').on('click', function (e) {
