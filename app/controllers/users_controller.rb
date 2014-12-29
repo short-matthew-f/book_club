@@ -3,10 +3,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @profile = @user.profile
     
-    if @user == current_user && @profile
-      render @user
-    else
+    if @user == current_user && !@profile
       redirect_to new_profile_url
+    else
+      render :show
     end
   end
   

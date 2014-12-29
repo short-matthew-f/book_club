@@ -1,5 +1,5 @@
 <% @friends.each do |friend| %>
-  <%= render partial: 'users/profile', locals: { profile: friend.profile } %>
+  <%= render partial: 'users/profile', locals: { user: friend, profile: friend.profile } %>
 <% end %>
 
 <script>
